@@ -1,0 +1,593 @@
+@use 'sass:map';
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:meta';
+
+.clearfix {
+  @include clearfix;
+}
+
+// Background colors
+
+@include generate-colors(bg,
+  background-color,
+  map-merge($status-color-map, (white: $color-white, transparent: transparent)));
+
+// Border colors
+
+@include generate-colors(border,
+  border-color,
+  map-merge($status-color-map, (transparent: transparent)));
+
+// Text colors
+
+@include generate-colors(text,
+  color,
+  map-merge($status-color-map, (white: $color-white, muted: $color-gray-light)));
+
+/// Alingment utilities
+$utilities: map.merge(
+  (
+    'vertical-align': (
+      property: vertical-align,
+      class: align,
+      values: top middle bottom
+    )
+  ),
+  $utilities
+);
+
+/// Border utilities
+$utilities: map.merge(
+  (
+    'border': (
+      property: border,
+      class: b,
+      values: $borders
+    ),
+    'border-top': (
+      property: border-top,
+      class: b-t,
+      values: $borders
+    ),
+    'border-bottom': (
+      property: border-bottom,
+      class: b-b,
+      values: $borders
+    ),
+    'border-right': (
+      property: border-right,
+      class: b-r,
+      values: $borders
+    ),
+    'border-left': (
+      property: border-left,
+      class: b-l,
+      values: $borders
+    )
+  ),
+  $utilities
+);
+
+/// Color utilities
+.text-white {
+  color: $color-white !important;
+}
+
+.text-black {
+  color: $color-black !important;
+}
+
+@each $name, $color in $basic-color-map {
+  .text-#{$name} {
+    color: $color !important;
+  }
+
+  .text-#{$name}-light {
+    color: color.adjust($color, $lightness: 15%) !important;
+  }
+
+  .text-#{$name}-lighter {
+    color: color.adjust($color, $lightness: 25%) !important;
+  }
+
+  .text-#{$name}-lightest {
+    color: color.adjust($color, $lightness: 35%) !important;
+  }
+
+  .text-#{$name}-dark {
+    color: color.adjust($color, $lightness: -15%) !important;
+  }
+
+  .text-#{$name}-darker {
+    color: color.adjust($color, $lightness: -25%) !important;
+  }
+
+  .text-#{$name}-darkest {
+    color: color.adjust($color, $lightness: -35%) !important;
+  }
+}
+
+// Background Colors
+
+.bg-white {
+  background-color: $color-white !important;
+}
+
+.bg-black {
+  background-color: $color-black !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+@each $name, $color in $basic-color-map {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+
+  .bg-#{$name}-light {
+    background-color: color.adjust($color, $lightness: 15%) !important;
+  }
+
+  .bg-#{$name}-lighter {
+    background-color: color.adjust($color, $lightness: 25%) !important;
+  }
+
+  .bg-#{$name}-lightest {
+    background-color: color.adjust($color, $lightness: 35%) !important;
+  }
+
+  .bg-#{$name}-dark {
+    background-color: color.adjust($color, $lightness: -15%) !important;
+  }
+
+  .bg-#{$name}-darker {
+    background-color: color.adjust($color, $lightness: -25%) !important;
+  }
+
+  .bg-#{$name}-darkest {
+    background-color: color.adjust($color, $lightness: -35%) !important;
+  }
+}
+
+/// Cursor utilities
+$utilities: map.merge(
+  (
+    'cursor': (
+      property: cursor,
+      class: cursor,
+      values: default pointer not-allowed
+    )
+  ),
+  $utilities
+);
+
+
+/// Display utilities
+$utilities: map.merge(
+  (
+    'display': (
+      property: display,
+      class: d,
+      values: block inline-block inline flex inline-flex none
+    )
+  ),
+  $utilities
+);
+
+
+/// Flex utilities
+$utilities: map.merge(
+  (
+    'flex-direction': (
+      property: flex-direction,
+      class: flex,
+      values: (
+        row: row,
+        row-reverse: row-reverse,
+        col: column,
+        col-reverse: column-reverse
+      )
+    ),
+    'flex-wrap': (
+      property: flex-wrap,
+      class: flex,
+      values: wrap nowrap wrap-reverse
+    ),
+    'justify-content': (
+      property: justify-content,
+      class: justify-content,
+      values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+      )
+    ),
+    'align-content': (
+      property: align-content,
+      class: align-content,
+      values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+        stretch: stretch,
+      )
+    ),
+    'align-items': (
+      property: align-items,
+      class: align-items,
+      values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        baseline: baseline,
+        stretch: stretch,
+      )
+    ),
+    'align-self': (
+      property: align-self,
+      class: align-self,
+      values: (
+        auto: auto,
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        baseline: baseline,
+        stretch: stretch,
+      )
+    ),
+  ),
+  $utilities
+);
+
+
+/// Float utilities
+$utilities: map.merge(
+  (
+    'float': (
+      property: float,
+      class: float,
+      values: left right none
+    )
+  ),
+  $utilities
+);
+
+
+/// Image utilities
+$utilities: map.merge(
+  (
+    'object-fit': (
+      property: object-fit,
+      class: object,
+      values: contain cover fill none scale-down
+    )
+  ),
+  $utilities
+);
+
+
+/// Overflow utilities
+$utilities: map.merge(
+  (
+    'overflow': (
+      property: overflow,
+      class: overflow,
+      values: auto hidden visible scroll
+    ),
+    'overflow-x': (
+      property: overflow-x,
+      class: overflow-x,
+      values: hidden visible scroll
+    ),
+    'overflow-y': (
+      property: overflow-y,
+      class: overflow-y,
+      values: hidden visible scroll
+    )
+  ),
+  $utilities
+);
+
+
+/// Position utilities
+$utilities: map.merge(
+  (
+    'position': (
+      property: position,
+      class: '',
+      values: static fixed absolute relative sticky
+    )
+  ),
+  $utilities
+);
+
+
+/// Rounded utilities
+$utilities: map.merge(
+  (
+    'border-radius': (
+      property: border-radius,
+      class: r,
+      values: $radius
+    ),
+    'border-top-left-radius': (
+      property: border-top-left-radius,
+      class: r-t-l,
+      values: $radius
+    ),
+    'border-top-right-radius': (
+      property: border-top-right-radius,
+      class: r-t-r,
+      values: $radius
+    ),
+    'border-bottom-right-radius': (
+      property: border-bottom-right-radius,
+      class: r-b-r,
+      values: $radius
+    ),
+    'border-bottom-left-radius': (
+      property: border-bottom-left-radius,
+      class: r-b-l,
+      values: $radius
+    )
+  ),
+  $utilities
+);
+
+
+/// Shadow utilities
+$utilities: map.merge(
+  (
+    'box-shadow': (
+      property: box-shadow,
+      class: shadow,
+      values: $shadows
+    )
+  ),
+  $utilities
+);
+
+
+/// Sizing utilities
+$utilities: map.merge(
+  (
+    'width': (
+      property: width,
+      class: w,
+      values: $sizes
+    ),
+    'height': (
+      property: height,
+      class: h,
+      values: $sizes
+    )
+  ),
+  $utilities
+);
+
+
+/// Spacing utilities
+$utilities: map.merge(
+  (
+    'margin': (
+      property: margin,
+      class: m,
+      values: map.merge($spacers, (auto: auto))
+    ),
+    'margin-x': (
+      property: margin-left margin-right,
+      class: m-x,
+      values: map.merge($spacers, (auto: auto))
+    ),
+    'margin-y': (
+      property: margin-top margin-bottom,
+      class: m-y,
+      values: map.merge($spacers, (auto: auto))
+    ),
+    'margin-top': (
+      property: margin-top,
+      class: m-t,
+      values: map.merge($spacers, (auto: auto))
+    ),
+    'margin-right': (
+      property: margin-right,
+      class: m-r,
+      values: map.merge($spacers, (auto: auto))
+    ),
+    'margin-bottom': (
+      property: margin-bottom,
+      class: m-b,
+      values: map.merge($spacers, (auto: auto))
+    ),
+    'margin-left': (
+      property: margin-left,
+      class: m-l,
+      values: map.merge($spacers, (auto: auto))
+    ),
+    'negative-margin': (
+      property: margin,
+      class: m,
+      values: $negative-spacers
+    ),
+    'negative-margin-x': (
+      property: margin-left margin-right,
+      class: m-x,
+      values: $negative-spacers
+    ),
+    'negative-margin-y': (
+      property: margin-top margin-bottom,
+      class: m-y,
+      values: $negative-spacers
+    ),
+    'negative-margin-top': (
+      property: margin-top,
+      class: m-t,
+      values: $negative-spacers
+    ),
+    'negative-margin-right': (
+      property: margin-right,
+      class: m-r,
+      values: $negative-spacers
+    ),
+    'negative-margin-bottom': (
+      property: margin-bottom,
+      class: m-b,
+      values: $negative-spacers
+    ),
+    'negative-margin-left': (
+      property: margin-left,
+      class: m-l,
+      values: $negative-spacers
+    ),
+    'padding': (
+      property: padding,
+      class: p,
+      values: $spacers
+    ),
+    'padding-x': (
+      property: padding-left padding-right,
+      class: p-x,
+      values: $spacers
+    ),
+    'padding-y': (
+      property: padding-top padding-bottom,
+      class: p-y,
+      values: $spacers
+    ),
+    'padding-top': (
+      property: padding-top,
+      class: p-t,
+      values: $spacers
+    ),
+    'padding-right': (
+      property: padding-right,
+      class: p-r,
+      values: $spacers
+    ),
+    'padding-bottom': (
+      property: padding-bottom,
+      class: p-b,
+      values: $spacers
+    ),
+    'padding-left': (
+      property: padding-left,
+      class: p-l,
+      values: $spacers
+    )
+  ),
+  $utilities
+);
+
+
+/// Text utilities
+$utilities: map.merge(
+  (
+    'font-size': (
+      property: font-size,
+      class: f-s,
+      values: $font-sizes
+    ),
+    'font-weight': (
+      property: font-weight,
+      class: f-w,
+      values: $font-wieghts
+    ),
+    'text-transform': (
+      property: text-transform,
+      class: text,
+      values: capitalize uppercase lowercase
+    ),
+    'text-align': (
+      property: text-align,
+      class: text,
+      values: center right left
+    ),
+    'white-space': (
+      property: white-space,
+      class: text,
+      values: (
+        wrap: normal,
+        nowrap: nowrap
+      )
+    ),
+    'text-overflow': (
+      property: text-overflow,
+      class: text,
+      values: ellipsis
+    ),
+    'word-spacing': (
+      property: word-spacing,
+      class: word-spacing,
+      values: unset normal
+    ),
+  ),
+  $utilities
+);
+
+
+/// This is the main loop that generates the utilities
+/// It loops through the $utilities map and generates the classes
+/// based on the values provided in the map
+/// The map should be in the following format:
+/// $utilities: (
+///  'property-name': (
+///   property: 'property',
+///  class: 'class-prefix',
+/// values: (
+///  'value': 'value',
+/// 'value': 'value'
+/// )
+/// )
+/// );
+/// The values map can be a list or a map
+/// If it's a list, it will be converted into a map
+/// with the same value for both key and value
+/// e.g. (1 2 3) will be converted into (1: 1, 2: 2, 3: 3)
+/// The class will be generated as .class-prefix-value
+/// e.g. .property-name-value
+/// If the class prefix is empty, the class will be generated as .value
+/// e.g. .value
+/// The property can be a list of properties
+/// e.g. property: margin-left margin-right
+/// The class prefix can be empty
+/// e.g. class: ''
+/// The values can be a list or a map
+/// e.g. values: (1 2 3) or values: (1: 1, 2: 2, 3: 3)
+/// The values can also be a map with a list of values
+/// e.g. values: (1: (1 2 3), 2: (4 5 6))
+/// 
+/// !!! IMPORTANT !!!
+/// This loop has to be the last one after all the utilities are defined
+@each $key, $utility in $utilities {
+  $values: map.get($utility, values);
+
+  // If the values are a list or string, convert it into a map
+  @if meta.type-of($values) == 'string' or meta.type-of(list.nth($values, 1)) != 'list' {
+    $values: list.zip($values, $values);
+  }
+
+  $properties: map.get($utility, property);
+  $property-class-prefix: map.get($utility, class);
+
+  // Utility class maybe empty, (e.g. with position class)
+  $property-class-prefix-hyphen: if(
+    $property-class-prefix == '',
+    $property-class-prefix,
+    $property-class-prefix + '-'
+  );
+
+  @each $class-modifier, $value in $values {
+    .#{$property-class-prefix-hyphen + $class-modifier} {
+      @each $property in $properties {
+        #{$property}: $value !important;
+      }
+    }
+  }
+}

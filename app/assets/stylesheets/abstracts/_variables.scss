@@ -1,0 +1,212 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+@use 'sass:map';
+
+
+
+/// Regular font family
+/// @type List
+$text-font-stack: (
+  'Open Sans',
+  'Helvetica Neue Light',
+  'Helvetica Neue',
+  'Helvetica',
+  'Arial',
+  sans-serif) !default;
+
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: (
+  'Courier New',
+  'DejaVu Sans Mono',
+  'Bitstream Vera Sans Mono',
+  'Monaco',
+  monospace) !default;
+
+/// Font size for the `body` element
+/// @type List
+$opensans-font-stack: (
+  'Open Sans',
+  'Sans',
+  sans-serif
+);
+
+
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+
+
+
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'small': 320px,
+  'medium': 768px,
+  'large': 1024px,
+  ) !default;
+
+
+
+
+
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example - When using a CDN
+/// $base-url: 'https://cdn.example.com/assets/';
+$base-url: '/assets/' !default;
+
+
+// Typography
+$line-height-base: 1.5 !default;
+$font-size-base: 1rem !default;
+$text-color: $gray-dark !default;
+
+// Grid
+$grid-columns: 12 !default;
+$grid-gutter: 1.5rem !default;
+
+// Button
+$btn-border-width: 2px !default;
+$btn-border-radius: 6px !default;
+$btn-font-size: $font-size-base !default;
+$btn-line-height: $line-height-base !default;
+
+// Table
+$table-border-color: rgba(0, 0, 0, .12) !default;
+$table-head-bg-color: rgba(100, 100, 150, .04) !default;
+$table-striped-bg-color: rgba(100, 100, 150, .04) !default;
+$table-hover-bg-color: rgba(100, 100, 150, .04) !default;
+$table-border-radius: 6px !default;
+$table-border-width: 2px !default;
+
+// Form
+$input-bg-color: $color-white !default;
+$input-border-color: rgba(0, 0, 0, .12) !default;
+$input-border-color-focus: $color-primary !default;
+$input-border-width: 2px !default;
+$input-border-radius: 6px !default;
+$input-text-color: $text-color !default;
+$input-font-size: $font-size-base !default;
+$input-line-height: $line-height-base !default;
+$form-text-color: $text-color !default;
+
+// Boxes
+$box-bg-color: $color-white !default;
+$box-border-color: rgba(0, 0, 0, .12) !default;
+$box-border-inverted-color: rgba(0, 0, 0, .88) !default;
+$box-heading-bg-color: rgba(100, 100, 150, .04) !default;
+$box-footer-bg-color: rgba(100, 100, 150, .04) !default;
+$box-border-radius: .25rem !default;
+$boxes-border-radius: 6px !default;
+$boxes-border-width: 2px !default;
+$boxes-box-border-radius: $boxes-border-radius - $boxes-border-width !default;
+
+// Utility Map
+
+$utilities: () !default;
+
+// Spacing
+
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  4: $spacer * .25,
+  8: $spacer * .5,
+  12: $spacer * .75,
+  16: $spacer,
+  24: $spacer * 1.5,
+  32: $spacer * 2,
+  48: $spacer * 3
+) !default;
+$spacers-extend: () !default;
+$spacers: map.merge($spacers, $spacers-extend);
+$negative-spacers: negativify-map($spacers) !default;
+
+// Border
+
+$border-color: rgba(0, 0, 0, .12) !default;
+$borders: (
+  0: 0,
+  1: 1px solid $border-color,
+  2: 2px solid $border-color,
+  4: 4px solid $border-color,
+  8: 8px solid $border-color
+) !default;
+$borders-extend: () !default;
+$borders: map.merge($borders, $borders-extend);
+
+// Border radius
+
+$radius-base: 1rem * .25 !default;
+$radius: (
+  0: 0,
+  4: $radius-base,
+  8: $radius-base * 2,
+  12: $radius-base * 3,
+  16: $radius-base * 4,
+  full: 50rem
+) !default;
+$radius-extend: () !default;
+$radius: map.merge($radius, $radius-extend);
+
+// Shadow
+
+$shadows: (
+  none: none,
+  1: (0 2px 4px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .06)),
+  2: (0 4px 8px -1px rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .06)),
+  3: (0 8px 16px -2px rgba(0, 0, 0, .12), 0 4px 8px -2px rgba(0, 0, 0, .06)),
+  4: (0 16px 32px -4px rgba(0, 0, 0, .12), 0 8px 16px -4px rgba(0, 0, 0, .06)),
+  5: (0 24px 48px -8px rgba(0, 0, 0, .12), 0 16px 32px -8px rgba(0, 0, 0, .06))
+) !default;
+$shadows-extend: () !default;
+$shadows: map.merge($shadows, $shadows-extend);
+
+// Text
+
+$font-wieghts: (
+  100: 100,
+  200: 200,
+  300: 300,
+  400: 400,
+  500: 500,
+  600: 600,
+  700: 700,
+  800: 800,
+  900: 900
+) !default;
+
+$font-sizes: (
+  0: 0,
+  10: .625rem,
+  12: .75rem,
+  14: .875rem,
+  16: 1rem,
+  18: 1.125rem,
+  20: 1.25rem,
+  24: 1.5rem,
+  32: 2rem,
+) !default;
+
+// Sizing
+
+$sizes: (
+  0: 0,
+  20: 20%,
+  25: 25%,
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  75: 75%,
+  80: 80%,
+  full: 100%,
+  auto: auto
+) !default;

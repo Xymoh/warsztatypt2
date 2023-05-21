@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the media component.
+// -----------------------------------------------------------------------------
+
+.media {
+    display: flex;
+    align-items: flex-start;
+  
+  &__body {
+    flex: 1;
+  }
+  
+  &__left {
+    padding-right: 1rem;
+  }
+  
+  &__right {
+    padding-left: 1rem;
+  }
+  
+  &__heading {
+    margin-top: 0;
+    margin-bottom: .5rem;
+  }
+  
+  &__content {
+    font-size: .875rem;
+  }
+  
+  &__avatar {
+    display: inline-block;
+    border-radius: 100%;
+    overflow: hidden;
+  
+    img {
+      display: block;
+    }
+  }
+}

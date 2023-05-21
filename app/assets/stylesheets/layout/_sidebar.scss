@@ -1,0 +1,45 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the sidebar of the site/application.
+// -----------------------------------------------------------------------------
+
+.sidebar {
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    // @media screen and (min-width: 576px) {
+    //   max-width: 100%;
+    // }
+  
+    >ul {
+      position: sticky;
+      top: 32px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      >li {
+        position: relative;
+        display: block;
+  
+        +li {
+          margin-top: 2px;
+        }
+  
+        >a {
+          position: relative;
+          display: block;
+          padding: 8px 12px;
+          border-radius: 4px;
+          font-size: 16px;
+          color: #656565;
+  
+          &:hover,
+          &:focus,
+          &:active {
+            text-decoration: none;
+            background-color: #eee;
+          }
+        }
+      }
+    }
+  }

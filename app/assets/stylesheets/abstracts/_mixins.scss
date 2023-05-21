@@ -1,0 +1,245 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+@use 'sass:math';
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+
+    &,
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus-within {
+      @content;
+    }
+  }
+
+  @else {
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus-within {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Kitty Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+@mixin overlay() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/// A font-face mixin that allows for multiple file formats
+/// @param {String} $font-family - The name of the font
+/// @param {String} $font-path - The path to the font file
+/// @param {Number} $font-weight - The weight of the font
+/// @param {List} $file-formats - The file formats to include
+/// @link https://css-tricks.com/snippets/css/using-font-face/
+@mixin font-face($font-family, $font-path, $font-weight, $file-formats: woff2 woff ttf eot svg) {
+  @font-face {
+    font-family: $font-family;
+    src: url("#{$font-path}.#{$file-formats[0]}") format("#{$file-formats[0]}");
+    font-weight: $font-weight;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @each $format in $file-formats {
+    @if ($format !=$file-formats(0)) {
+      @font-face {
+        font-family: $font-family;
+        src: url("#{$font-path}.#{$format}") format("#{$format}");
+        font-weight: $font-weight;
+        font-style: normal;
+        font-display: swap;
+      }
+    }
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// MEDIA QUERY MANAGER
+// -----------------------------------------------------------------------------
+
+/*
+0 - 600px:          Phone
+600- 900px:         Tablet Portrait
+900 - 1200px:       Tablet Landscape
+(1200 - 1800px)     is where our normal styles apply
+1800px + :          Big Desktop
+*/
+
+/*
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+ORDER: BASE + Typography > general layout + grid > page layout > components
+*/
+
+// 1em = 16px
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone-vsmall {
+    @media only screen and (max-width: em(390)) {
+      @content;
+    }
+
+    //390px
+  }
+
+  @if $breakpoint == phone-small {
+    @media only screen and (max-width: em(450)) {
+      @content;
+    }
+
+    //450px
+  }
+
+  @if $breakpoint == phone {
+    @media only screen and (max-width: em(600)) {
+      @content;
+    }
+
+    //600px
+  }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: em(900)) {
+      @content;
+    }
+
+    //900px
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: em(1200)) {
+      @content;
+    }
+
+    //1200px
+  }
+
+  @if $breakpoint == laptop {
+    @media only screen and (max-width: em(1368)) {
+      @content;
+    }
+
+    //1368px
+  }
+
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: em(1800)) {
+      @content;
+    }
+
+    //1800px
+  }
+}
+
+/// Make a grid column
+/// @param {Number} $grid-columns - The number of columns
+/// @param {Number} $grid-gutter - The gutter width
+/// @param {Number} $i - The current column
+/// @param {String} $list - The list of columns
+/// @link https://css-tricks.com/snippets/sass/looping-through-lists/
+@mixin make-grid-columns($i: 1, $list: '.col') {
+  @for $i from 1 through $grid-columns {
+    $list: '#{$list}, .col-#{$i}';
+  }
+
+  #{$list} {
+    position: relative;
+    width: 100%;
+    padding-left: math.div($grid-gutter, 2);
+    padding-right: math.div($grid-gutter, 2);
+  }
+}
+
+/// Make grid columns equal
+@mixin make-grid-columns-equal() {
+  .col {
+    flex: 1 0 0%;
+  }
+}
+
+/// Loop through grid columns
+/// @param {Number} $columns - The number of columns
+/// @param {Number} $i - The current column
+/// @param {String} $list - The list of columns
+/// @link https://css-tricks.com/snippets/sass/looping-through-lists/
+@mixin loop-grid-columns($columns) {
+  @for $i from 1 through $columns {
+    @if ($columns == 12) {
+      .col-#{$i} {
+        flex: 0 0 math.percentage(math.div($i, $columns));
+        max-width: math.percentage(math.div($i, $columns));
+      }
+
+      .col-offset-#{$i} {
+        margin-left: math.percentage(math.div($i, $columns));
+      }
+    }
+
+    @else {
+      .cols-#{$columns}>.col-#{$i} {
+        flex: 0 0 math.percentage(math.div($i, $columns));
+        // max-width: math.percentage(math.div($i, $columns));
+      }
+
+      .cols-#{$columns}>.col-offset-#{$i} {
+        margin-left: math.percentage(math.div($i, $columns));
+      }
+    }
+  }
+}
+
+/// mixin clearfix for clearing floats
+/// @link https://css-tricks.com/snippets/css/clear-fix/
+@mixin clearfix() {
+
+  &::before,
+  &::after {
+    content: ' '; // 1
+    display: table; // 2
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+/// mixin for generating color classes
+/// @param {String} $class-prefix - The prefix for the class name
+/// @param {String} $property - The property to apply the color to
+/// @param {Map} $colors - The map of colors to use
+@mixin generate-colors($class-prefix, $property, $colors: $status-color-map) {
+
+  @each $name,
+  $color in $colors {
+    .#{$class-prefix + '-' + $name} {
+      #{$property}: $color !important;
+    }
+  }
+}

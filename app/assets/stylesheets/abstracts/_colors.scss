@@ -1,0 +1,87 @@
+$text-color:               hsl(0, 0%, 13%) !default;
+$text-color-tdcm:          hsl(216, 17%, 32%) !default;
+
+$color-primary-light:      hsl(196, 79%, 71%) !default;
+$color-primary:            hsl(196, 79%, 61%) !default;
+$color-primary-dark:       hsl(196, 79%, 51%) !default;
+
+$color-secondary-light:    hsl(216, 17%, 42%) !default;
+$color-secondary:          hsl(216, 17%, 32%) !default;
+$color-secondary-dark:     hsl(216, 17%, 22%) !default;
+
+$color-default:            hsl(202, 15%, 75%) !default;
+$color-info:               hsl(194, 63%, 56%) !default;
+$color-success:            hsl(87, 44%, 49%) !default;
+$color-danger:             hsl(1, 100%, 67%) !default;
+$color-warning:            hsl(36, 92%, 53%) !default;
+$color-inverted:           hsl(208, 14%, 21%) !default;
+
+// British names for grey
+$color-grey-light:         hsl(0, 0%, 93%) !default;
+$color-grey:               hsl(0, 0%, 60%) !default;
+$color-grey-dark:          hsl(0, 0%, 27%) !default;
+
+// USA names for gray
+$color-gray-light:         hsl(0, 0%, 93%) !default;
+$color-gray:               hsl(0, 0%, 60%) !default;
+$color-gray-dark:          hsl(0, 0%, 27%) !default;
+
+$color-white:              hsl(0, 0%, 100%) !default;
+$color-white-dark:         hsl(0, 0%, 87%) !default;
+
+$color-black-light:        hsl(0, 0%, 46%) !default;
+$color-black:              hsl(0, 0%, 13%) !default;
+$color-black-mat:          hsl(0, 0%, 8%) !default;
+
+$color-green-light:        hsl(111, 55%, 64%) !default;
+$color-green:              hsl(140, 49%, 55%) !default;
+$color-green-dark:         hsl(160, 64%, 43%) !default;
+
+$color-brown:              hsl(16, 25%, 53%) !default;
+
+$color-red-light:          hsl(0, 100%, 75%) !default;
+$color-red:                hsl(0, 100%, 50%) !default;
+$color-red-dark:           hsl(0, 100%, 25%) !default;
+
+$color-orange-light:       hsl(44, 100%, 50%) !default;
+$color-orange:             hsl(35, 100%, 50%) !default;
+$color-orange-dark:        hsl(21, 100%, 59%) !default;
+
+$color-yellow:             hsl(60, 100%, 50%) !default;
+
+$color-teal:               hsl(174, 81%, 49%) !default;
+
+$color-blue-light:         hsl(209, 100%, 58%) !default;
+$color-blue:               hsl(211, 100%, 50%) !default;
+$color-blue-dark:          hsl(246, 95%, 62%) !default;
+
+$color-indigo:             hsl(231, 48%, 58%) !default;
+
+$color-purple:             hsl(291, 62%, 48%) !default;
+$color-purple-dark:        hsl(280, 100%, 50%) !default;
+
+$color-pink:               hsl(330, 100%, 50%) !default;
+
+$status-color-map: (
+  default:  $color-default,
+  primary:  $color-primary,
+  info:     $color-info,
+  success:  $color-success,
+  danger:   $color-danger,
+  warning:  $color-warning,
+  inverted: $color-inverted
+);
+
+$basic-color-map: (
+  'gray':   $color-gray,
+  'brown':  $color-brown,
+  'red':    $color-red,
+  'orange': $color-orange,
+  'yellow': $color-yellow,
+  'green':  $color-green,
+  'teal':   $color-teal,
+  'blue':   $color-blue,
+  'indigo': $color-indigo,
+  'purple': $color-purple,
+  'pink':   $color-pink
+)

@@ -1,0 +1,61 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the grid of the site/application.
+// -----------------------------------------------------------------------------
+
+@use 'sass:math';
+
+.grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: math.div($grid-gutter, 2);
+  padding-right: math.div($grid-gutter, 2);
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: math.div($grid-gutter, -2);
+    margin-right: math.div($grid-gutter, -2);
+  }
+
+  // Grid
+  &__box {
+    margin: 10px 0;
+    text-align: center;
+    background-color: #ffeeed;
+    line-height: 2;
+    border: 1px solid #ffb7b5;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #fbe2e1;
+    }
+  }
+}
+
+@include make-grid-columns();
+
+@media (min-width: 576px) {
+  // Equal grid
+  @include make-grid-columns-equal();
+  // Looping 12-grids default
+  @include loop-grid-columns(12);
+  // Looping 10-grids
+  @include loop-grid-columns(10);
+}
+
+// Gutters
+
+@for $counter from 0 through 8 {
+  $gutter-num: (4 * $counter);
+  $gutter: 1px * $gutter-num;
+
+  .row.g-#{$gutter-num} {
+    margin-left: if($counter ==0, 0, math.div($gutter, -2)) !important;
+    margin-right: if($counter ==0, 0, math.div($gutter, -2)) !important;
+
+    >[class*='col'] {
+      padding-left: if($counter ==0, 0, math.div($gutter, 2)) !important;
+      padding-right: if($counter ==0, 0, math.div($gutter, 2)) !important;
+    }
+  }
+}

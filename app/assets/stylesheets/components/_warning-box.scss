@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the warning-box component.
+// -----------------------------------------------------------------------------
+
+.warning-box {
+    border-radius: 0.25rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;   
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    background-color: $color-red-light;
+    color: $text-color !important;
+
+    &_text-red-darker {
+        color: $color-red-dark !important;
+    }
+}

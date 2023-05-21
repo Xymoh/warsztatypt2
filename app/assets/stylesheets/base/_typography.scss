@@ -1,0 +1,106 @@
+/**
+ * Basic typography style for copy text
+ */
+
+@use 'sass:color';
+
+body {
+  color: $text-color;
+  line-height: $line-height-base;
+  font: normal 125% / 1.4 $text-font-stack;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(rem(28), rem(16) + 2vw, rem(40));
+  color: $text-color-tdcm;
+}
+
+h2 {
+  font-size: clamp(rem(22), rem(14) + 1.5vw, rem(36));
+  color: $text-color-tdcm;
+}
+
+h3 {
+  font-size: rem(24);
+}
+
+h4 {
+  font-size: rem(20);
+}
+
+h5 {
+  font-size: rem(16);
+}
+
+h6 {
+  font-size: rem(14);
+}
+
+p {
+  margin-top: 0;
+  font-size: rem(16);
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+pre {
+  display: block;
+  font-size: .875em;
+  border-radius: .2rem;
+  overflow: auto;
+}
+
+code {
+  padding: .2rem .4rem;
+  font-size: .875em;
+  color: color.adjust($color-danger, $lightness: -30%);
+  background-color: color.adjust($color-danger, $lightness: 30%);
+  border-radius: .2rem;
+}
+
+kbd {
+  padding: .2rem .4rem;
+  font-size: .875em;
+  color: $color-white;
+  background-color: $color-grey-dark;
+  border-radius: .2rem;
+}
+
+hr {
+  margin: 1rem 0;
+  color: inherit;
+  background-color: currentColor;
+  border: 0;
+  opacity: .25;
+
+  &:not([size]) {
+    height: 1px;
+  }
+}
+
+small {
+  font-size: .875em;
+}

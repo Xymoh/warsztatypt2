@@ -1,0 +1,188 @@
+// -----------------------------------------------------------------------------
+// When having several themes, this file contains everything related to the
+// admin one.
+// -----------------------------------------------------------------------------
+
+@use 'sass:color';
+
+.theme-dark {
+  // color
+  $color-gray-darker: #262626;
+  $color-gray-dark: #2d2d2d;
+  $color-gray: #383838;
+  $color-gray-light: #5c5c5c;
+  $color-gray-lighter: #7f7f7f;
+  $color-inverted: #fff;
+  // typography
+  $text-color: $color-gray-lighter;
+  // table
+  $table-border-color: $color-gray-dark;
+  $table-head-bg-color: #242424;
+  $table-striped-bg-color: #242424;
+  $table-hover-bg-color: #242424;
+  // form
+  $input-bg-color: #353535;
+  $input-bg-color-focus: color.adjust($input-bg-color, $lightness: -5%);
+  $input-border-color: #404040;
+  $input-border-color-focus: color.adjust($input-border-color, $lightness: -5%);
+  $input-text-color: #fff;
+  // boxes
+  $box-bg-color: #1a1a1a;
+  $box-border-color: rgba(255, 255, 255, 12%);
+  $box-heading-bg-color: #242424;
+  $box-footer-bg-color: #242424;
+
+  background-color: #212121;
+  color: $text-color;
+
+  body {
+    background-color: #212121;
+    color: $text-color;
+  }
+
+  code {
+    background-color: $color-orange-light;
+    color: $color-gray-light;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #fff;
+  }
+
+  .warning-box {
+    background-color: $color-orange-light;
+    border-color: #2d2d2d;
+  }
+
+  .table {
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th,
+        > td {
+          border-color: $table-border-color;
+        }
+      }
+    }
+
+    > thead,
+    > tfoot {
+      background-color: $table-head-bg-color;
+    }
+
+    &.bordered {
+      border-color: $table-border-color;
+
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            border-color: $table-border-color;
+          }
+        }
+      }
+    }
+
+    &.striped {
+      > tbody > tr:nth-of-type(2n+2) {
+        background-color: $table-striped-bg-color;
+      }
+    }
+
+    &.hover {
+      > tbody > tr:hover {
+        background-color: $table-hover-bg-color;
+      }
+    }
+  }
+
+  .btn.inverted {
+    color: $color-inverted;
+  }
+
+  .form__control {
+    border-color: $input-border-color;
+    background-color: $input-bg-color;
+    color: $input-text-color;
+
+    &:focus {
+      background-color: $input-bg-color-focus;
+      border-color: $input-border-color-focus;
+      box-shadow: none;
+    }
+  }
+
+  .form__inline_control {
+    border-color: $input-border-color;
+    background-color: $input-bg-color;
+    color: $input-text-color;
+
+    &:focus {
+      background-color: $input-bg-color-focus;
+      border-color: $input-border-color-focus;
+      box-shadow: none;
+    }
+  }
+
+  .box {
+    border-color: $box-border-color;
+    background-color: $box-bg-color;
+    color: $text-color;
+  }
+
+  .boxes {
+    border-color: $box-border-color;
+
+    > .box {
+      &.box_header {
+        background-color: $box-heading-bg-color;
+      }
+
+      &.box_footer {
+        background-color: $box-footer-bg-color;
+      }
+    }
+
+    &.default {
+      border-color: $box-border-color;
+    }
+
+    &.inverted {
+      border-color: $color-inverted;
+
+      > .box {
+        color: $color-inverted;
+      }
+    }
+
+    &.secondary {
+      border-width: 0;
+
+      > .box {
+        &.box_header {
+          background-color: transparent;
+        }
+
+        &.box_footer {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .bg-transparent {
+    color: $color-white !important;
+  }
+
+  .bg-primary {
+    color: $color-white !important;
+  }
+}

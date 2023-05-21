@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+//Footer
+footer {
+   width: 100%;
+ 
+   &.dark {
+     background: $color-black;  
+   }
+
+   .container {
+      padding: em(16);
+    }
+ }
+ 
+ //Footer Buttons
+ footer .btn {  
+   flex: 0 0 auto;
+   color: $color-orange-light; 
+ }
+
+ //Footer Copyright Message
+footer .copyright {  
+   text-align: center; 
+ }
+ 

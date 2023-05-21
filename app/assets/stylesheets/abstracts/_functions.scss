@@ -1,0 +1,108 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------\
+
+@use 'sass:math';
+@use 'sass:map';
+
+/// Native `url(..)` function wrapper
+/// @param {String} $base - base URL for the asset
+/// @param {String} $type - asset type folder (e.g. `fonts/`)
+/// @param {String} $path - asset path
+/// @return {Url} /
+@function asset($base, $type, $path) {
+  @return url($base + $type + $path);
+}
+
+/// Returns URL to an image based on its path
+/// @param {String} $path - image path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url /
+@function image($path, $base: $base-url) {
+  @return asset($base, 'images/', $path);
+}
+
+/// Returns URL to a font based on its path
+/// @param {String} $path - font path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url /
+@function font($path, $base: $base-url) {
+  @return asset($base, 'fonts/', $path);
+}
+
+
+/// Returns EM value based on a given pixel size
+/// @param {Length} $pxsize - pixel size
+/// @return {Length} /
+@function em($pxsize) {
+  @if math.is-unitless($pxsize) {
+    @return math.div($pxsize, 16) + em;
+  }
+  @else {
+    @error 'Expected unitless value, but got #{$pxsize}. Don\'t use units when calling the `em` function.';
+  }
+}
+
+/// Returns a division of two numbers
+/// @param {Number} $dividend - dividend
+/// @param {Number} $divisor - divisor
+/// @param {Number} $precision [10] - precision
+/// @return {Number} /
+@function divide($dividend, $divisor, $precision: 10) {
+  $sign: if($dividend > 0 and $divisor > 0, 1, -1);
+  $dividend: abs($dividend);
+  $divisor: abs($divisor);
+  $quotient: 0;
+  $remainder: $dividend;
+  @if $dividend == 0 {
+    @return 0;
+  }
+  @if $divisor == 0 {
+    @error "Cannot divide by 0";
+  }
+  @if $divisor == 1 {
+    @return $dividend;
+  }
+  @while $remainder >= $divisor {
+    $quotient: $quotient + 1;
+    $remainder: $remainder - $divisor;
+  }
+  @if $remainder > 0 and $precision > 0 {
+    $remainder: divide($remainder * 10, $divisor, $precision - 1) * .1;
+  }
+  @return ($quotient + $remainder) * $sign;
+}
+
+/// function negativify-map for mapping negative values
+/// @param {Map} $map
+@function negativify-map($map) {
+  $result: ();
+
+  @each $key, $value in $map {
+    @if $key != 0 {
+      $result: map.merge($result, ('-' + $key: (-$value)));
+    }
+  }
+
+  @return $result;
+}
+
+/// function mixcolor for gradient
+/// @param {String} $index
+/// @param {Number} $count
+/// @param {Number} $height
+/// @param {String} $start_color
+/// @param {String} $end_color
+/// @author Tony Banik
+/// @link https://codepen.io/tonybanik/pen/qMNGJZ
+@function mixcolor($index, $count,$height,$start_color,$end_color: $start_color) {
+  @if $end_color != $start_color {
+      @return mix($end_color, $start_color, percentage($index / (($height * 2) * $count)));
+  } @else {
+      @return $start_color
+  }
+}
+
+
